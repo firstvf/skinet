@@ -7,16 +7,17 @@ namespace API.Helpers
 {
     public class ProductUrlResolver : IValueResolver<Product, ProductToReturnDto, string>
     {
-        public IConfiguration _config { get; }
+        public IConfiguration Config { get; }
+
         public ProductUrlResolver(IConfiguration config)
         {
-            _config = config;
+            Config = config;
         }
 
         public string Resolve(Product source, ProductToReturnDto destination, string destMember, ResolutionContext context)
         {
             if (!string.IsNullOrEmpty(source.PictureUrl))
-                return _config["ApiUrl"] + source.PictureUrl;
+                return Config["ApiUrl"] + source.PictureUrl;
 
             return null;
         }
