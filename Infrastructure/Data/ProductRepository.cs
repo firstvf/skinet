@@ -20,10 +20,17 @@ namespace Infrastructure.Data
         .FirstOrDefaultAsync(p => p.Id == id);
 
         public async Task<IReadOnlyList<Product>> GetProductsAsync()
-        => await _context.Products
-        .Include(p => p.ProductType)
-        .Include(p => p.ProductBrand)
-        .ToListAsync();
+        {
+            var typeId = 1;
+
+            var products = _context.Products.Where(x => x.ProductTypeId == typeId)
+            .Include(x => x.ProductType).ToListAsync();
+
+            return await _context.Products
+           .Include(p => p.ProductType)
+           .Include(p => p.ProductBrand)
+           .ToListAsync();
+        }
 
         public async Task<IReadOnlyList<ProductBrand>> GetProductsBrandsAsync()
         => await _context.ProductBrands.ToListAsync();
