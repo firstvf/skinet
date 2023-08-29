@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { IProduct } from '../shared/models/product';
 import { ShopService } from './shop.service';
 import { IBrand } from '../shared/models/brand';
@@ -10,8 +10,8 @@ import { ShopParams } from '../shared/models/shopParams';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss']
 })
-export class ShopComponent implements OnInit {
-  @ViewChild('search', { static: true }) searchTerm: ElementRef;
+export class ShopComponent implements OnInit, OnDestroy {
+  @ViewChild('search', { static: false }) searchTerm: ElementRef;
   products: IProduct[];
   brands: IBrand[];
   types: IType[];
@@ -25,7 +25,7 @@ export class ShopComponent implements OnInit {
   ];
 
   constructor(private shopService: ShopService) { }
-
+  
   ngOnInit() {
     this.getProducts();
     this.getBrands();
@@ -96,5 +96,9 @@ export class ShopComponent implements OnInit {
     this.shopParams = new ShopParams();
     this.shopParams.sort = sortCache;
     this.getProducts();
+  }
+
+  ngOnDestroy(): void {
+    
   }
 }
