@@ -4,6 +4,7 @@ appsettings.json
 *.db
 *.png
 *.jpg
+*.rdb
 API/skinet.db-shm
 .gitignore
 API/skinet.db-wal
