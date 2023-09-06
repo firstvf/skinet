@@ -8,3 +8,4 @@ appsettings.json
 API/skinet.db-shm
 .gitignore
 API/skinet.db-wal
+docker-compose.yml
