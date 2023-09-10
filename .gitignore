@@ -9,3 +9,5 @@ API/skinet.db-shm
 .gitignore
 API/skinet.db-wal
 docker-compose.yml
+*Infrastructure/identity/AppIdentityDbContextSeed.cs
+API/appsettings.Development.json
